@@ -5,7 +5,8 @@ class Api::V1::CandidatesController < ApplicationController
   end
 
   def show
-
+    @candidate = Candidate.find(params[:id])
+    render json: @candidate
   end
 
 end

@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :voters, defaults: { :format => 'json' }
+      resources :votes, defaults: { :format => 'json' }
+      resources :candidates, defaults: { :format => 'json' }
+    end
+  end
+
+  resources :candidates
+  resources :voters
+  resources :votes
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
