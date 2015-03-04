@@ -1,5 +1,6 @@
 class Api::V1::VotesController < ApplicationController
   protect_from_forgery with: :null_session
+  before_action :restrict_access, only: [:create]
 
   def create
     @vote = Vote.new(vote_params)
