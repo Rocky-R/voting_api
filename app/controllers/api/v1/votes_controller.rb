@@ -13,7 +13,11 @@ class Api::V1::VotesController < ApplicationController
   end
 
   def index
-    render json: Vote.all
+    results = []
+    results = Candidate.all.map do |c|
+      {name: c.name, party: c.party, vote_count: c.votes.count}
+    end
+    render json: results
   end
 
   private def vote_params
