@@ -1,6 +1,7 @@
 class Api::V1::VotersController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :restrict_access, only: [:show, :update]
+  before_action :set_voter, only: [:update]
 
   def create
     @voter = Voter.new(voter_params)
@@ -13,7 +14,6 @@ class Api::V1::VotersController < ApplicationController
   end
 
   def show
-    @voter = Voter.find(params[:id])
     render json: @voter
   end
 
@@ -27,5 +27,9 @@ class Api::V1::VotersController < ApplicationController
 
   private def voter_params
     params.require(:voter).permit(:name, :party)
+  end
+
+  private def set_voter
+    @voter = Voter.find(params[:id])
   end
 end
