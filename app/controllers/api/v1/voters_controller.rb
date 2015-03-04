@@ -1,4 +1,5 @@
 class Api::V1::VotersController < ApplicationController
+  protect_from_forgery with: :null_session
 
   def create
     @voter = Voter.new(voter_params)
